@@ -1,0 +1,27 @@
+{
+  "changelogDate": "20230524112905",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ftype",
+      "fieldType": "etype",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "STRING,INT,DATE,FLOAT,FILE"
+    },
+    {
+      "fieldName": "fvalue",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    }
+  ],
+  "name": "Fields",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
