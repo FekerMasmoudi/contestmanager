@@ -23,7 +23,7 @@
           <label class="form-label" for="field_ftype">Ftype</label>
           <select class="form-control" name="ftype" formControlName="ftype" id="field_ftype" data-cy="ftype">
             <option [ngValue]="null"></option>
-            <option *ngFor="let etype of etypeValues" [value]="etype">etype</option>
+            <option *ngFor="let etype of etypeValues" [value]="etype">{{ etype }}</option>
           </select>
           <div *ngIf="editForm.get('ftype')!.invalid && (editForm.get('ftype')!.dirty || editForm.get('ftype')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('ftype')?.errors?.required"> هذا الحقل مطلوب. </small>
