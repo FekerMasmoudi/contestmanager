@@ -1,0 +1,16 @@
+{
+  "changelogDate": "20230524145804",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "designation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Speciality",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

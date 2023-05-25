@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contest">
+      <h2 data-cy="contestDetailsHeading"><span>Contest</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ contest.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ contest.name }}</span>
+        </dd>
+        <dt><span>Parent</span></dt>
+        <dd>
+          <span>{{ contest.parent }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ contest.description }}</span>
+        </dd>
+        <dt><span>Idcontestannounce</span></dt>
+        <dd>
+          <div *ngIf="contest.idcontestannounce">
+            <a [routerLink]="['/contestannounce', contest.idcontestannounce.id, 'view']">{{ contest.idcontestannounce.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Idgrade</span></dt>
+        <dd>
+          <div *ngIf="contest.idgrade">
+            <a [routerLink]="['/grade', contest.idgrade.id, 'view']">{{ contest.idgrade.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Idspeciality</span></dt>
+        <dd>
+          <div *ngIf="contest.idspeciality">
+            <a [routerLink]="['/speciality', contest.idspeciality.id, 'view']">{{ contest.idspeciality.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Idsector</span></dt>
+        <dd>
+          <div *ngIf="contest.idsector">
+            <a [routerLink]="['/sector', contest.idsector.id, 'view']">{{ contest.idsector.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Ideducationlevel</span></dt>
+        <dd>
+          <div *ngIf="contest.ideducationlevel">
+            <a [routerLink]="['/educationlevel', contest.ideducationlevel.id, 'view']">{{ contest.ideducationlevel.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>رجوع</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contest', contest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>تعديل</span>
+      </button>
+    </div>
+  </div>
+</div>

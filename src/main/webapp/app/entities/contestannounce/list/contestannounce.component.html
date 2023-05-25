@@ -1,0 +1,131 @@
+<div>
+  <h2 id="page-heading" data-cy="ContestannounceHeading">
+    <span>Contestannounces</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contestannounce"
+        [routerLink]="['/contestannounce/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Contestannounce </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contestannounces?.length === 0">
+    <span>No Contestannounces found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="contestannounces && contestannounces.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="announceText">
+            <div class="d-flex">
+              <span>Announce Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startdate">
+            <div class="d-flex">
+              <span>Startdate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="limitdate">
+            <div class="d-flex">
+              <span>Limitdate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idsgeneralrules.id">
+            <div class="d-flex">
+              <span>Idsgeneralrules</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contestannounce of contestannounces; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contestannounce', contestannounce.id, 'view']">{{ contestannounce.id }}</a>
+          </td>
+          <td>{{ contestannounce.announceText }}</td>
+          <td>{{ contestannounce.startdate | formatMediumDate }}</td>
+          <td>{{ contestannounce.limitdate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="contestannounce.idsgeneralrules">
+              <a [routerLink]="['/generalrules', contestannounce.idsgeneralrules.id, 'view']">{{ contestannounce.idsgeneralrules.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contestannounce', contestannounce.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">عرض</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contestannounce', contestannounce.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">تعديل</span>
+              </button>
+
+              <button type="submit" (click)="delete(contestannounce)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">حذف</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="contestannounces && contestannounces.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contestannounce">
+      <h2 data-cy="contestannounceDetailsHeading"><span>Contestannounce</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ contestannounce.id }}</span>
+        </dd>
+        <dt><span>Announce Text</span></dt>
+        <dd>
+          <span>{{ contestannounce.announceText }}</span>
+        </dd>
+        <dt><span>Startdate</span></dt>
+        <dd>
+          <span>{{ contestannounce.startdate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Limitdate</span></dt>
+        <dd>
+          <span>{{ contestannounce.limitdate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Idsgeneralrules</span></dt>
+        <dd>
+          <div *ngIf="contestannounce.idsgeneralrules">
+            <a [routerLink]="['/generalrules', contestannounce.idsgeneralrules.id, 'view']">{{ contestannounce.idsgeneralrules.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>رجوع</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contestannounce', contestannounce.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>تعديل</span>
+      </button>
+    </div>
+  </div>
+</div>
