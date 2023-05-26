@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_elas8PuwEe2VztB6e-Y4pQ">
-  <modelElement href="platform:/resource/contestmanager/src/main/java/tn/soretras/contestmanager/domain/contestmanager.uml#_ehufwPuwEe2VztB6e-Y4pQ"/>
+  <modelElement href="contestmanager.uml#_ehufwPuwEe2VztB6e-Y4pQ"/>
 </com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
