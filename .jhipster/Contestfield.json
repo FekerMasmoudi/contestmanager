@@ -28,6 +28,20 @@
     {
       "fieldName": "svalue",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "logic",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ctype",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     }
   ],
   "name": "Contestfield",

@@ -54,6 +54,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Contestfields' },
         loadChildren: () => import('./contestfield/contestfield.module').then(m => m.ContestfieldModule),
       },
+      {
+        path: 'contestform',
+        data: { pageTitle: 'Contestforms' },
+        loadChildren: () => import('./contestform/contestform.module').then(m => m.ContestformModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

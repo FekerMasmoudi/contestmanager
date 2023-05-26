@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import tn.soretras.contestmanager.IntegrationTest;
+import tn.soretras.contestmanager.domain.Contestform;
 import tn.soretras.contestmanager.domain.Fields;
 import tn.soretras.contestmanager.domain.enumeration.etype;
 import tn.soretras.contestmanager.repository.FieldsRepository;
@@ -60,6 +61,11 @@ class FieldsResourceIT {
      */
     public static Fields createEntity() {
         Fields fields = new Fields().name(DEFAULT_NAME).ftype(DEFAULT_FTYPE).fvalue(DEFAULT_FVALUE);
+        // Add required entity
+        Contestform contestform;
+        contestform = ContestformResourceIT.createEntity();
+        contestform.setId("fixed-id-for-tests");
+        fields.setContestform(contestform);
         return fields;
     }
 
@@ -71,6 +77,11 @@ class FieldsResourceIT {
      */
     public static Fields createUpdatedEntity() {
         Fields fields = new Fields().name(UPDATED_NAME).ftype(UPDATED_FTYPE).fvalue(UPDATED_FVALUE);
+        // Add required entity
+        Contestform contestform;
+        contestform = ContestformResourceIT.createUpdatedEntity();
+        contestform.setId("fixed-id-for-tests");
+        fields.setContestform(contestform);
         return fields;
     }
 

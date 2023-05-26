@@ -26,6 +26,9 @@ describe('Contestfield Form Service', () => {
             fvalue: expect.any(Object),
             sopconstraint: expect.any(Object),
             svalue: expect.any(Object),
+            logic: expect.any(Object),
+            ctype: expect.any(Object),
+            cname: expect.any(Object),
             idcontest: expect.any(Object),
           })
         );
@@ -43,6 +46,9 @@ describe('Contestfield Form Service', () => {
             fvalue: expect.any(Object),
             sopconstraint: expect.any(Object),
             svalue: expect.any(Object),
+            logic: expect.any(Object),
+            ctype: expect.any(Object),
+            cname: expect.any(Object),
             idcontest: expect.any(Object),
           })
         );

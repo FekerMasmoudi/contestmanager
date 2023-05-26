@@ -21,6 +21,7 @@ type FieldsFormGroupContent = {
   name: FormControl<IFields['name']>;
   ftype: FormControl<IFields['ftype']>;
   fvalue: FormControl<IFields['fvalue']>;
+  contestform: FormControl<IFields['contestform']>;
 };
 
 export type FieldsFormGroup = FormGroup<FieldsFormGroupContent>;
@@ -47,6 +48,9 @@ export class FieldsFormService {
         validators: [Validators.required],
       }),
       fvalue: new FormControl(fieldsRawValue.fvalue),
+      contestform: new FormControl(fieldsRawValue.contestform, {
+        validators: [Validators.required],
+      }),
     });
   }
 

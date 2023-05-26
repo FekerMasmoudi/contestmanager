@@ -74,6 +74,24 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="logic">
+            <div class="d-flex">
+              <span>Logic</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ctype">
+            <div class="d-flex">
+              <span>Ctype</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cname">
+            <div class="d-flex">
+              <span>Cname</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="idcontest.id">
             <div class="d-flex">
               <span>Idcontest</span>
@@ -94,6 +112,9 @@
           <td>{{ contestfield.fvalue }}</td>
           <td>{{ contestfield.sopconstraint }}</td>
           <td>{{ contestfield.svalue }}</td>
+          <td>{{ contestfield.logic }}</td>
+          <td>{{ contestfield.ctype }}</td>
+          <td>{{ contestfield.cname }}</td>
           <td>
             <div *ngIf="contestfield.idcontest">
               <a [routerLink]="['/contest', contestfield.idcontest.id, 'view']">{{ contestfield.idcontest.id }}</a>

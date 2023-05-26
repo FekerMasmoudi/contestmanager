@@ -34,6 +34,28 @@
           <label class="form-label" for="field_fvalue">Fvalue</label>
           <input type="text" class="form-control" name="fvalue" id="field_fvalue" data-cy="fvalue" formControlName="fvalue" />
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_contestform">Contestform</label>
+          <select
+            class="form-control"
+            id="field_contestform"
+            data-cy="contestform"
+            name="contestform"
+            formControlName="contestform"
+            [compareWith]="compareContestform"
+          >
+            <option *ngIf="!editForm.get('contestform')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="contestformOption" *ngFor="let contestformOption of contestformsSharedCollection">
+              {{ contestformOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['contestform'])!.invalid && (editForm.get(['contestform'])!.dirty || editForm.get(['contestform'])!.touched)"
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['contestform'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
       </div>
 
       <div>

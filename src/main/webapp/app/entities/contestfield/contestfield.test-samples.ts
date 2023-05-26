@@ -5,30 +5,40 @@ export const sampleWithRequiredData: IContestfield = {
   reference: 20741,
   fopconstraint: 'cyan',
   fvalue: 'mint mesh Granite',
+  ctype: 'Investment port',
+  cname: 'payment compressing RAM',
 };
 
 export const sampleWithPartialData: IContestfield = {
-  id: '3b40ea80-d4cd-41b7-9f29-e4f0469cefbe',
-  reference: 98090,
-  fopconstraint: 'Functionality Wooden collaborative',
-  fvalue: 'Associate Cotton',
-  sopconstraint: 'synthesize redundant Handcrafted',
+  id: '9e4f0469-cefb-4efa-b4c2-275f39f0c168',
+  reference: 84940,
+  fopconstraint: 'Nakfa facilitate payment',
+  fvalue: 'fresh-thinking Persevering',
+  sopconstraint: 'FTP Handcrafted',
+  svalue: 'Generic programming Vermont',
+  ctype: 'Ergonomic drive',
+  cname: 'Communications emulation',
 };
 
 export const sampleWithFullData: IContestfield = {
-  id: '38468394-9e57-41bc-b0a7-f5dee9e36019',
-  reference: 98001,
-  mandatory: false,
-  fopconstraint: 'Swaziland Communications emulation',
-  fvalue: 'Jewelery HDD parsing',
-  sopconstraint: 'JBOD green',
-  svalue: 'Buckinghamshire infomediaries redundant',
+  id: 'f0c8d92d-fd6e-4f32-8cc7-b06afc6d8ed1',
+  reference: 13004,
+  mandatory: true,
+  fopconstraint: 'iterate Avon JSON',
+  fvalue: 'Virtual Practical Assistant',
+  sopconstraint: 'schemas Buckinghamshire',
+  svalue: 'focus Clothing',
+  logic: 'convergence monitor',
+  ctype: 'Principal',
+  cname: 'infrastructures',
 };
 
 export const sampleWithNewData: NewContestfield = {
-  reference: 50937,
-  fopconstraint: 'SDD Tennessee Dynamic',
-  fvalue: 'program',
+  reference: 45181,
+  fopconstraint: 'Massachusetts silver Specialist',
+  fvalue: 'invoice Architect Baby',
+  ctype: 'Exclusive haptic Zambia',
+  cname: 'streamline invoice benchmark',
   id: null,
 };
 

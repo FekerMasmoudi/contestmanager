@@ -8,6 +8,9 @@ export interface IContestfield {
   fvalue?: string | null;
   sopconstraint?: string | null;
   svalue?: string | null;
+  logic?: string | null;
+  ctype?: string | null;
+  cname?: string | null;
   idcontest?: Pick<IContest, 'id'> | null;
 }
 

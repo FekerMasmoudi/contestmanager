@@ -21,6 +21,8 @@ public class FieldsDTO implements Serializable {
 
     private String fvalue;
 
+    private ContestformDTO contestform;
+
     public String getId() {
         return id;
     }
@@ -53,6 +55,14 @@ public class FieldsDTO implements Serializable {
         this.fvalue = fvalue;
     }
 
+    public ContestformDTO getContestform() {
+        return contestform;
+    }
+
+    public void setContestform(ContestformDTO contestform) {
+        this.contestform = contestform;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -82,6 +92,7 @@ public class FieldsDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", ftype='" + getFtype() + "'" +
             ", fvalue='" + getFvalue() + "'" +
+            ", contestform=" + getContestform() +
             "}";
     }
 }

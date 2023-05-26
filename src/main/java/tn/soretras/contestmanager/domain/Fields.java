@@ -1,8 +1,10 @@
 package tn.soretras.contestmanager.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import tn.soretras.contestmanager.domain.enumeration.etype;
@@ -29,6 +31,11 @@ public class Fields implements Serializable {
 
     @Field("fvalue")
     private String fvalue;
+
+    @DBRef
+    @Field("contestform")
+    @JsonIgnoreProperties(value = { "contest", "user" }, allowSetters = true)
+    private Contestform contestform;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -82,6 +89,19 @@ public class Fields implements Serializable {
 
     public void setFvalue(String fvalue) {
         this.fvalue = fvalue;
+    }
+
+    public Contestform getContestform() {
+        return this.contestform;
+    }
+
+    public void setContestform(Contestform contestform) {
+        this.contestform = contestform;
+    }
+
+    public Fields contestform(Contestform contestform) {
+        this.setContestform(contestform);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

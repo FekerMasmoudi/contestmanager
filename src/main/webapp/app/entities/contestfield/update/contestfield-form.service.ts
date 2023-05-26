@@ -24,6 +24,9 @@ type ContestfieldFormGroupContent = {
   fvalue: FormControl<IContestfield['fvalue']>;
   sopconstraint: FormControl<IContestfield['sopconstraint']>;
   svalue: FormControl<IContestfield['svalue']>;
+  logic: FormControl<IContestfield['logic']>;
+  ctype: FormControl<IContestfield['ctype']>;
+  cname: FormControl<IContestfield['cname']>;
   idcontest: FormControl<IContestfield['idcontest']>;
 };
 
@@ -56,6 +59,13 @@ export class ContestfieldFormService {
       }),
       sopconstraint: new FormControl(contestfieldRawValue.sopconstraint),
       svalue: new FormControl(contestfieldRawValue.svalue),
+      logic: new FormControl(contestfieldRawValue.logic),
+      ctype: new FormControl(contestfieldRawValue.ctype, {
+        validators: [Validators.required],
+      }),
+      cname: new FormControl(contestfieldRawValue.cname, {
+        validators: [Validators.required],
+      }),
       idcontest: new FormControl(contestfieldRawValue.idcontest, {
         validators: [Validators.required],
       }),

@@ -27,6 +27,14 @@ public class ContestfieldDTO implements Serializable {
 
     private String svalue;
 
+    private String logic;
+
+    @NotNull
+    private String ctype;
+
+    @NotNull
+    private String cname;
+
     private ContestDTO idcontest;
 
     public String getId() {
@@ -85,6 +93,30 @@ public class ContestfieldDTO implements Serializable {
         this.svalue = svalue;
     }
 
+    public String getLogic() {
+        return logic;
+    }
+
+    public void setLogic(String logic) {
+        this.logic = logic;
+    }
+
+    public String getCtype() {
+        return ctype;
+    }
+
+    public void setCtype(String ctype) {
+        this.ctype = ctype;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
     public ContestDTO getIdcontest() {
         return idcontest;
     }
@@ -125,6 +157,9 @@ public class ContestfieldDTO implements Serializable {
             ", fvalue='" + getFvalue() + "'" +
             ", sopconstraint='" + getSopconstraint() + "'" +
             ", svalue='" + getSvalue() + "'" +
+            ", logic='" + getLogic() + "'" +
+            ", ctype='" + getCtype() + "'" +
+            ", cname='" + getCname() + "'" +
             ", idcontest=" + getIdcontest() +
             "}";
     }

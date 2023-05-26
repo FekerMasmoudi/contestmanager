@@ -47,6 +47,15 @@ class ContestfieldResourceIT {
     private static final String DEFAULT_SVALUE = "AAAAAAAAAA";
     private static final String UPDATED_SVALUE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_LOGIC = "AAAAAAAAAA";
+    private static final String UPDATED_LOGIC = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CTYPE = "AAAAAAAAAA";
+    private static final String UPDATED_CTYPE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CNAME = "AAAAAAAAAA";
+    private static final String UPDATED_CNAME = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/contestfields";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -74,7 +83,10 @@ class ContestfieldResourceIT {
             .fopconstraint(DEFAULT_FOPCONSTRAINT)
             .fvalue(DEFAULT_FVALUE)
             .sopconstraint(DEFAULT_SOPCONSTRAINT)
-            .svalue(DEFAULT_SVALUE);
+            .svalue(DEFAULT_SVALUE)
+            .logic(DEFAULT_LOGIC)
+            .ctype(DEFAULT_CTYPE)
+            .cname(DEFAULT_CNAME);
         // Add required entity
         Contest contest;
         contest = ContestResourceIT.createEntity();
@@ -96,7 +108,10 @@ class ContestfieldResourceIT {
             .fopconstraint(UPDATED_FOPCONSTRAINT)
             .fvalue(UPDATED_FVALUE)
             .sopconstraint(UPDATED_SOPCONSTRAINT)
-            .svalue(UPDATED_SVALUE);
+            .svalue(UPDATED_SVALUE)
+            .logic(UPDATED_LOGIC)
+            .ctype(UPDATED_CTYPE)
+            .cname(UPDATED_CNAME);
         // Add required entity
         Contest contest;
         contest = ContestResourceIT.createUpdatedEntity();
@@ -132,6 +147,9 @@ class ContestfieldResourceIT {
         assertThat(testContestfield.getFvalue()).isEqualTo(DEFAULT_FVALUE);
         assertThat(testContestfield.getSopconstraint()).isEqualTo(DEFAULT_SOPCONSTRAINT);
         assertThat(testContestfield.getSvalue()).isEqualTo(DEFAULT_SVALUE);
+        assertThat(testContestfield.getLogic()).isEqualTo(DEFAULT_LOGIC);
+        assertThat(testContestfield.getCtype()).isEqualTo(DEFAULT_CTYPE);
+        assertThat(testContestfield.getCname()).isEqualTo(DEFAULT_CNAME);
     }
 
     @Test
@@ -212,6 +230,44 @@ class ContestfieldResourceIT {
     }
 
     @Test
+    void checkCtypeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = contestfieldRepository.findAll().size();
+        // set the field null
+        contestfield.setCtype(null);
+
+        // Create the Contestfield, which fails.
+        ContestfieldDTO contestfieldDTO = contestfieldMapper.toDto(contestfield);
+
+        restContestfieldMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(contestfieldDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Contestfield> contestfieldList = contestfieldRepository.findAll();
+        assertThat(contestfieldList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    void checkCnameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = contestfieldRepository.findAll().size();
+        // set the field null
+        contestfield.setCname(null);
+
+        // Create the Contestfield, which fails.
+        ContestfieldDTO contestfieldDTO = contestfieldMapper.toDto(contestfield);
+
+        restContestfieldMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(contestfieldDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Contestfield> contestfieldList = contestfieldRepository.findAll();
+        assertThat(contestfieldList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllContestfields() throws Exception {
         // Initialize the database
         contestfieldRepository.save(contestfield);
@@ -227,7 +283,10 @@ class ContestfieldResourceIT {
             .andExpect(jsonPath("$.[*].fopconstraint").value(hasItem(DEFAULT_FOPCONSTRAINT)))
             .andExpect(jsonPath("$.[*].fvalue").value(hasItem(DEFAULT_FVALUE)))
             .andExpect(jsonPath("$.[*].sopconstraint").value(hasItem(DEFAULT_SOPCONSTRAINT)))
-            .andExpect(jsonPath("$.[*].svalue").value(hasItem(DEFAULT_SVALUE)));
+            .andExpect(jsonPath("$.[*].svalue").value(hasItem(DEFAULT_SVALUE)))
+            .andExpect(jsonPath("$.[*].logic").value(hasItem(DEFAULT_LOGIC)))
+            .andExpect(jsonPath("$.[*].ctype").value(hasItem(DEFAULT_CTYPE)))
+            .andExpect(jsonPath("$.[*].cname").value(hasItem(DEFAULT_CNAME)));
     }
 
     @Test
@@ -246,7 +305,10 @@ class ContestfieldResourceIT {
             .andExpect(jsonPath("$.fopconstraint").value(DEFAULT_FOPCONSTRAINT))
             .andExpect(jsonPath("$.fvalue").value(DEFAULT_FVALUE))
             .andExpect(jsonPath("$.sopconstraint").value(DEFAULT_SOPCONSTRAINT))
-            .andExpect(jsonPath("$.svalue").value(DEFAULT_SVALUE));
+            .andExpect(jsonPath("$.svalue").value(DEFAULT_SVALUE))
+            .andExpect(jsonPath("$.logic").value(DEFAULT_LOGIC))
+            .andExpect(jsonPath("$.ctype").value(DEFAULT_CTYPE))
+            .andExpect(jsonPath("$.cname").value(DEFAULT_CNAME));
     }
 
     @Test
@@ -270,7 +332,10 @@ class ContestfieldResourceIT {
             .fopconstraint(UPDATED_FOPCONSTRAINT)
             .fvalue(UPDATED_FVALUE)
             .sopconstraint(UPDATED_SOPCONSTRAINT)
-            .svalue(UPDATED_SVALUE);
+            .svalue(UPDATED_SVALUE)
+            .logic(UPDATED_LOGIC)
+            .ctype(UPDATED_CTYPE)
+            .cname(UPDATED_CNAME);
         ContestfieldDTO contestfieldDTO = contestfieldMapper.toDto(updatedContestfield);
 
         restContestfieldMockMvc
@@ -291,6 +356,9 @@ class ContestfieldResourceIT {
         assertThat(testContestfield.getFvalue()).isEqualTo(UPDATED_FVALUE);
         assertThat(testContestfield.getSopconstraint()).isEqualTo(UPDATED_SOPCONSTRAINT);
         assertThat(testContestfield.getSvalue()).isEqualTo(UPDATED_SVALUE);
+        assertThat(testContestfield.getLogic()).isEqualTo(UPDATED_LOGIC);
+        assertThat(testContestfield.getCtype()).isEqualTo(UPDATED_CTYPE);
+        assertThat(testContestfield.getCname()).isEqualTo(UPDATED_CNAME);
     }
 
     @Test
@@ -388,6 +456,9 @@ class ContestfieldResourceIT {
         assertThat(testContestfield.getFvalue()).isEqualTo(DEFAULT_FVALUE);
         assertThat(testContestfield.getSopconstraint()).isEqualTo(UPDATED_SOPCONSTRAINT);
         assertThat(testContestfield.getSvalue()).isEqualTo(DEFAULT_SVALUE);
+        assertThat(testContestfield.getLogic()).isEqualTo(DEFAULT_LOGIC);
+        assertThat(testContestfield.getCtype()).isEqualTo(DEFAULT_CTYPE);
+        assertThat(testContestfield.getCname()).isEqualTo(DEFAULT_CNAME);
     }
 
     @Test
@@ -407,7 +478,10 @@ class ContestfieldResourceIT {
             .fopconstraint(UPDATED_FOPCONSTRAINT)
             .fvalue(UPDATED_FVALUE)
             .sopconstraint(UPDATED_SOPCONSTRAINT)
-            .svalue(UPDATED_SVALUE);
+            .svalue(UPDATED_SVALUE)
+            .logic(UPDATED_LOGIC)
+            .ctype(UPDATED_CTYPE)
+            .cname(UPDATED_CNAME);
 
         restContestfieldMockMvc
             .perform(
@@ -427,6 +501,9 @@ class ContestfieldResourceIT {
         assertThat(testContestfield.getFvalue()).isEqualTo(UPDATED_FVALUE);
         assertThat(testContestfield.getSopconstraint()).isEqualTo(UPDATED_SOPCONSTRAINT);
         assertThat(testContestfield.getSvalue()).isEqualTo(UPDATED_SVALUE);
+        assertThat(testContestfield.getLogic()).isEqualTo(UPDATED_LOGIC);
+        assertThat(testContestfield.getCtype()).isEqualTo(UPDATED_CTYPE);
+        assertThat(testContestfield.getCname()).isEqualTo(UPDATED_CNAME);
     }
 
     @Test

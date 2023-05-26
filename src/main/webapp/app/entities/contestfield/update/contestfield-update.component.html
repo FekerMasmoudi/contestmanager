@@ -70,6 +70,27 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" for="field_logic">Logic</label>
+          <input type="text" class="form-control" name="logic" id="field_logic" data-cy="logic" formControlName="logic" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ctype">Ctype</label>
+          <input type="text" class="form-control" name="ctype" id="field_ctype" data-cy="ctype" formControlName="ctype" />
+          <div *ngIf="editForm.get('ctype')!.invalid && (editForm.get('ctype')!.dirty || editForm.get('ctype')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('ctype')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_cname">Cname</label>
+          <input type="text" class="form-control" name="cname" id="field_cname" data-cy="cname" formControlName="cname" />
+          <div *ngIf="editForm.get('cname')!.invalid && (editForm.get('cname')!.dirty || editForm.get('cname')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('cname')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" for="field_idcontest">Idcontest</label>
           <select
             class="form-control"

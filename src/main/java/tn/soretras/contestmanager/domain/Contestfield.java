@@ -41,6 +41,17 @@ public class Contestfield implements Serializable {
     @Field("svalue")
     private String svalue;
 
+    @Field("logic")
+    private String logic;
+
+    @NotNull
+    @Field("ctype")
+    private String ctype;
+
+    @NotNull
+    @Field("cname")
+    private String cname;
+
     @DBRef
     @Field("idcontest")
     @JsonIgnoreProperties(value = { "idcontestannounce", "idgrade", "idspeciality", "idsector" }, allowSetters = true)
@@ -139,6 +150,45 @@ public class Contestfield implements Serializable {
         this.svalue = svalue;
     }
 
+    public String getLogic() {
+        return this.logic;
+    }
+
+    public Contestfield logic(String logic) {
+        this.setLogic(logic);
+        return this;
+    }
+
+    public void setLogic(String logic) {
+        this.logic = logic;
+    }
+
+    public String getCtype() {
+        return this.ctype;
+    }
+
+    public Contestfield ctype(String ctype) {
+        this.setCtype(ctype);
+        return this;
+    }
+
+    public void setCtype(String ctype) {
+        this.ctype = ctype;
+    }
+
+    public String getCname() {
+        return this.cname;
+    }
+
+    public Contestfield cname(String cname) {
+        this.setCname(cname);
+        return this;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
     public Contest getIdcontest() {
         return this.idcontest;
     }
@@ -182,6 +232,9 @@ public class Contestfield implements Serializable {
             ", fvalue='" + getFvalue() + "'" +
             ", sopconstraint='" + getSopconstraint() + "'" +
             ", svalue='" + getSvalue() + "'" +
+            ", logic='" + getLogic() + "'" +
+            ", ctype='" + getCtype() + "'" +
+            ", cname='" + getCname() + "'" +
             "}";
     }
 }

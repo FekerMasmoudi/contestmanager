@@ -23,6 +23,7 @@ describe('Fields Form Service', () => {
             name: expect.any(Object),
             ftype: expect.any(Object),
             fvalue: expect.any(Object),
+            contestform: expect.any(Object),
           })
         );
       });
@@ -36,6 +37,7 @@ describe('Fields Form Service', () => {
             name: expect.any(Object),
             ftype: expect.any(Object),
             fvalue: expect.any(Object),
+            contestform: expect.any(Object),
           })
         );
       });

@@ -26,6 +26,12 @@
         <dd>
           <span>{{ fields.fvalue }}</span>
         </dd>
+        <dt><span>Contestform</span></dt>
+        <dd>
+          <div *ngIf="fields.contestform">
+            <a [routerLink]="['/contestform', fields.contestform.id, 'view']">{{ fields.contestform.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
