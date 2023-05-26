@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-contestfield-heading" data-cy="ContestfieldCreateUpdateHeading">Create or edit a Contestfield</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_reference">Reference</label>
+          <input type="number" class="form-control" name="reference" id="field_reference" data-cy="reference" formControlName="reference" />
+          <div *ngIf="editForm.get('reference')!.invalid && (editForm.get('reference')!.dirty || editForm.get('reference')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('reference')?.errors?.required"> هذا الحقل مطلوب. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('reference')?.errors?.number"> هذا الحقل يجب أن يكون رقم. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_mandatory">Mandatory</label>
+          <input type="checkbox" class="form-check" name="mandatory" id="field_mandatory" data-cy="mandatory" formControlName="mandatory" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fopconstraint">Fopconstraint</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fopconstraint"
+            id="field_fopconstraint"
+            data-cy="fopconstraint"
+            formControlName="fopconstraint"
+          />
+          <div
+            *ngIf="
+              editForm.get('fopconstraint')!.invalid && (editForm.get('fopconstraint')!.dirty || editForm.get('fopconstraint')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('fopconstraint')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fvalue">Fvalue</label>
+          <input type="text" class="form-control" name="fvalue" id="field_fvalue" data-cy="fvalue" formControlName="fvalue" />
+          <div *ngIf="editForm.get('fvalue')!.invalid && (editForm.get('fvalue')!.dirty || editForm.get('fvalue')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('fvalue')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sopconstraint">Sopconstraint</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sopconstraint"
+            id="field_sopconstraint"
+            data-cy="sopconstraint"
+            formControlName="sopconstraint"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_svalue">Svalue</label>
+          <input type="text" class="form-control" name="svalue" id="field_svalue" data-cy="svalue" formControlName="svalue" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idcontest">Idcontest</label>
+          <select
+            class="form-control"
+            id="field_idcontest"
+            data-cy="idcontest"
+            name="idcontest"
+            formControlName="idcontest"
+            [compareWith]="compareContest"
+          >
+            <option *ngIf="!editForm.get('idcontest')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="contestOption" *ngFor="let contestOption of contestsSharedCollection">{{ contestOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['idcontest'])!.invalid && (editForm.get(['idcontest'])!.dirty || editForm.get(['idcontest'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['idcontest'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>الغاء</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>حفظ</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

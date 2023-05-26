@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-contestannounce-heading" data-cy="ContestannounceCreateUpdateHeading">Create or edit a Contestannounce</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_announceText">Announce Text</label>
+          <input
+            type="text"
+            class="form-control"
+            name="announceText"
+            id="field_announceText"
+            data-cy="announceText"
+            formControlName="announceText"
+          />
+          <div
+            *ngIf="editForm.get('announceText')!.invalid && (editForm.get('announceText')!.dirty || editForm.get('announceText')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('announceText')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_startdate">Startdate</label>
+          <div class="input-group">
+            <input
+              id="field_startdate"
+              data-cy="startdate"
+              type="text"
+              class="form-control"
+              name="startdate"
+              ngbDatepicker
+              #startdateDp="ngbDatepicker"
+              formControlName="startdate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="startdateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('startdate')!.invalid && (editForm.get('startdate')!.dirty || editForm.get('startdate')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('startdate')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_limitdate">Limitdate</label>
+          <div class="input-group">
+            <input
+              id="field_limitdate"
+              data-cy="limitdate"
+              type="text"
+              class="form-control"
+              name="limitdate"
+              ngbDatepicker
+              #limitdateDp="ngbDatepicker"
+              formControlName="limitdate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="limitdateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('limitdate')!.invalid && (editForm.get('limitdate')!.dirty || editForm.get('limitdate')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('limitdate')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="field_idsgeneralrules">Idsgeneralrules</label>
+          <select
+            class="form-control"
+            id="field_idsgeneralrules"
+            data-cy="idsgeneralrules"
+            multiple
+            name="idsgeneralrules"
+            formControlName="idsgeneralrules"
+            [compareWith]="compareGeneralrules"
+          >
+            <option [ngValue]="generalrulesOption" *ngFor="let generalrulesOption of generalrulesSharedCollection">
+              {{ generalrulesOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['idsgeneralrules'])!.invalid &&
+            (editForm.get(['idsgeneralrules'])!.dirty || editForm.get(['idsgeneralrules'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['idsgeneralrules'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>الغاء</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>حفظ</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

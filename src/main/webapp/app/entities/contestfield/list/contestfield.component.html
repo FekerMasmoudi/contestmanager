@@ -1,0 +1,152 @@
+<div>
+  <h2 id="page-heading" data-cy="ContestfieldHeading">
+    <span>Contestfields</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contestfield"
+        [routerLink]="['/contestfield/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Contestfield </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contestfields?.length === 0">
+    <span>No Contestfields found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="contestfields && contestfields.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reference">
+            <div class="d-flex">
+              <span>Reference</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="mandatory">
+            <div class="d-flex">
+              <span>Mandatory</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fopconstraint">
+            <div class="d-flex">
+              <span>Fopconstraint</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fvalue">
+            <div class="d-flex">
+              <span>Fvalue</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sopconstraint">
+            <div class="d-flex">
+              <span>Sopconstraint</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="svalue">
+            <div class="d-flex">
+              <span>Svalue</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idcontest.id">
+            <div class="d-flex">
+              <span>Idcontest</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contestfield of contestfields; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contestfield', contestfield.id, 'view']">{{ contestfield.id }}</a>
+          </td>
+          <td>{{ contestfield.reference }}</td>
+          <td>{{ contestfield.mandatory }}</td>
+          <td>{{ contestfield.fopconstraint }}</td>
+          <td>{{ contestfield.fvalue }}</td>
+          <td>{{ contestfield.sopconstraint }}</td>
+          <td>{{ contestfield.svalue }}</td>
+          <td>
+            <div *ngIf="contestfield.idcontest">
+              <a [routerLink]="['/contest', contestfield.idcontest.id, 'view']">{{ contestfield.idcontest.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contestfield', contestfield.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">عرض</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contestfield', contestfield.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">تعديل</span>
+              </button>
+
+              <button type="submit" (click)="delete(contestfield)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">حذف</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="contestfields && contestfields.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

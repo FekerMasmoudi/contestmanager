@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="grade">
+      <h2 data-cy="gradeDetailsHeading"><span>Grade</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ grade.id }}</span>
+        </dd>
+        <dt><span>Designation</span></dt>
+        <dd>
+          <span>{{ grade.designation }}</span>
+        </dd>
+        <dt><span>Ideducationlevel</span></dt>
+        <dd>
+          <div *ngIf="grade.ideducationlevel">
+            <a [routerLink]="['/educationlevel', grade.ideducationlevel.id, 'view']">{{ grade.ideducationlevel.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Idcertificate</span></dt>
+        <dd>
+          <div *ngIf="grade.idcertificate">
+            <a [routerLink]="['/certificate', grade.idcertificate.id, 'view']">{{ grade.idcertificate.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>رجوع</span>
+      </button>
+
+      <button type="button" [routerLink]="['/grade', grade.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>تعديل</span>
+      </button>
+    </div>
+  </div>
+</div>

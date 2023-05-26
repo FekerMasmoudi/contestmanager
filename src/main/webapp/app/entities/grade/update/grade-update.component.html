@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-grade-heading" data-cy="GradeCreateUpdateHeading">Create or edit a Grade</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_designation">Designation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="designation"
+            id="field_designation"
+            data-cy="designation"
+            formControlName="designation"
+          />
+          <div *ngIf="editForm.get('designation')!.invalid && (editForm.get('designation')!.dirty || editForm.get('designation')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('designation')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ideducationlevel">Ideducationlevel</label>
+          <select
+            class="form-control"
+            id="field_ideducationlevel"
+            data-cy="ideducationlevel"
+            name="ideducationlevel"
+            formControlName="ideducationlevel"
+            [compareWith]="compareEducationlevel"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="educationlevelOption" *ngFor="let educationlevelOption of educationlevelsSharedCollection">
+              {{ educationlevelOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idcertificate">Idcertificate</label>
+          <select
+            class="form-control"
+            id="field_idcertificate"
+            data-cy="idcertificate"
+            name="idcertificate"
+            formControlName="idcertificate"
+            [compareWith]="compareCertificate"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="certificateOption" *ngFor="let certificateOption of certificatesSharedCollection">
+              {{ certificateOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>الغاء</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>حفظ</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

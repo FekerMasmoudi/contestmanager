@@ -1,0 +1,41 @@
+{
+  "changelogDate": "20230525184040",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "announceText",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startdate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "limitdate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Contestannounce",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "generalrules",
+      "otherEntityRelationshipName": "contanngenrul",
+      "ownerSide": true,
+      "relationshipName": "idsgeneralrules",
+      "relationshipType": "many-to-many",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,46 @@
+{
+  "changelogDate": "20230525200920",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reference",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "mandatory",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fopconstraint",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fvalue",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sopconstraint",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "svalue",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Contestfield",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "contest",
+      "relationshipName": "idcontest",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceClass"
+}

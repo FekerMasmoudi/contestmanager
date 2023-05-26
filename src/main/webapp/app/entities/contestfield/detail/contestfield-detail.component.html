@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contestfield">
+      <h2 data-cy="contestfieldDetailsHeading"><span>Contestfield</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ contestfield.id }}</span>
+        </dd>
+        <dt><span>Reference</span></dt>
+        <dd>
+          <span>{{ contestfield.reference }}</span>
+        </dd>
+        <dt><span>Mandatory</span></dt>
+        <dd>
+          <span>{{ contestfield.mandatory }}</span>
+        </dd>
+        <dt><span>Fopconstraint</span></dt>
+        <dd>
+          <span>{{ contestfield.fopconstraint }}</span>
+        </dd>
+        <dt><span>Fvalue</span></dt>
+        <dd>
+          <span>{{ contestfield.fvalue }}</span>
+        </dd>
+        <dt><span>Sopconstraint</span></dt>
+        <dd>
+          <span>{{ contestfield.sopconstraint }}</span>
+        </dd>
+        <dt><span>Svalue</span></dt>
+        <dd>
+          <span>{{ contestfield.svalue }}</span>
+        </dd>
+        <dt><span>Idcontest</span></dt>
+        <dd>
+          <div *ngIf="contestfield.idcontest">
+            <a [routerLink]="['/contest', contestfield.idcontest.id, 'view']">{{ contestfield.idcontest.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>رجوع</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contestfield', contestfield.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>تعديل</span>
+      </button>
+    </div>
+  </div>
+</div>

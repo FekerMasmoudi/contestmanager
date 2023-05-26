@@ -1,0 +1,29 @@
+{
+  "changelogDate": "20230525160539",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "designation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Grade",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "educationlevel",
+      "relationshipName": "ideducationlevel",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "certificate",
+      "relationshipName": "idcertificate",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

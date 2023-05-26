@@ -1,0 +1,174 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-contest-heading" data-cy="ContestCreateUpdateHeading">Create or edit a Contest</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_parent">Parent</label>
+          <input type="text" class="form-control" name="parent" id="field_parent" data-cy="parent" formControlName="parent" />
+          <div *ngIf="editForm.get('parent')!.invalid && (editForm.get('parent')!.dirty || editForm.get('parent')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('parent')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+          <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('description')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nbpositions">Nbpositions</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbpositions"
+            id="field_nbpositions"
+            data-cy="nbpositions"
+            formControlName="nbpositions"
+          />
+          <div *ngIf="editForm.get('nbpositions')!.invalid && (editForm.get('nbpositions')!.dirty || editForm.get('nbpositions')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nbpositions')?.errors?.required"> هذا الحقل مطلوب. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('nbpositions')?.errors?.number">
+              هذا الحقل يجب أن يكون رقم.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> هذا الحقل مطلوب. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idcontestannounce">Idcontestannounce</label>
+          <select
+            class="form-control"
+            id="field_idcontestannounce"
+            data-cy="idcontestannounce"
+            name="idcontestannounce"
+            formControlName="idcontestannounce"
+            [compareWith]="compareContestannounce"
+          >
+            <option *ngIf="!editForm.get('idcontestannounce')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="contestannounceOption" *ngFor="let contestannounceOption of contestannouncesSharedCollection">
+              {{ contestannounceOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['idcontestannounce'])!.invalid &&
+            (editForm.get(['idcontestannounce'])!.dirty || editForm.get(['idcontestannounce'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['idcontestannounce'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idgrade">Idgrade</label>
+          <select
+            class="form-control"
+            id="field_idgrade"
+            data-cy="idgrade"
+            name="idgrade"
+            formControlName="idgrade"
+            [compareWith]="compareGrade"
+          >
+            <option *ngIf="!editForm.get('idgrade')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="gradeOption" *ngFor="let gradeOption of gradesSharedCollection">{{ gradeOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['idgrade'])!.invalid && (editForm.get(['idgrade'])!.dirty || editForm.get(['idgrade'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['idgrade'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idspeciality">Idspeciality</label>
+          <select
+            class="form-control"
+            id="field_idspeciality"
+            data-cy="idspeciality"
+            name="idspeciality"
+            formControlName="idspeciality"
+            [compareWith]="compareSpeciality"
+          >
+            <option *ngIf="!editForm.get('idspeciality')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="specialityOption" *ngFor="let specialityOption of specialitiesSharedCollection">
+              {{ specialityOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['idspeciality'])!.invalid && (editForm.get(['idspeciality'])!.dirty || editForm.get(['idspeciality'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['idspeciality'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idsector">Idsector</label>
+          <select
+            class="form-control"
+            id="field_idsector"
+            data-cy="idsector"
+            name="idsector"
+            formControlName="idsector"
+            [compareWith]="compareSector"
+          >
+            <option *ngIf="!editForm.get('idsector')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="sectorOption" *ngFor="let sectorOption of sectorsSharedCollection">{{ sectorOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['idsector'])!.invalid && (editForm.get(['idsector'])!.dirty || editForm.get(['idsector'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['idsector'])?.errors?.required"> هذا الحقل مطلوب. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>الغاء</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>حفظ</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
