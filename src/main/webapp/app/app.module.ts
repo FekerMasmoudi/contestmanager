@@ -29,6 +29,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     BrowserModule,
     SharedModule,
     HomeModule,
+    
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
