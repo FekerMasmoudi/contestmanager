@@ -6,58 +6,48 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'fields',
-        data: { pageTitle: 'Fields' },
+        data: { pageTitle: 'الحقــــــــــــــــــــــــــول' },
         loadChildren: () => import('./fields/fields.module').then(m => m.FieldsModule),
       },
       {
-        path: 'educationlevel',
-        data: { pageTitle: 'Educationlevels' },
-        loadChildren: () => import('./educationlevel/educationlevel.module').then(m => m.EducationlevelModule),
-      },
-      {
-        path: 'certificate',
-        data: { pageTitle: 'Certificates' },
-        loadChildren: () => import('./certificate/certificate.module').then(m => m.CertificateModule),
-      },
-      {
-        path: 'grade',
-        data: { pageTitle: 'Grades' },
-        loadChildren: () => import('./grade/grade.module').then(m => m.GradeModule),
-      },
-      {
-        path: 'sector',
-        data: { pageTitle: 'Sectors' },
-        loadChildren: () => import('./sector/sector.module').then(m => m.SectorModule),
-      },
-      {
-        path: 'speciality',
-        data: { pageTitle: 'Specialities' },
-        loadChildren: () => import('./speciality/speciality.module').then(m => m.SpecialityModule),
-      },
-      {
         path: 'generalrules',
-        data: { pageTitle: 'Generalrules' },
+        data: { pageTitle: 'الشــروط العــامـــــة' },
         loadChildren: () => import('./generalrules/generalrules.module').then(m => m.GeneralrulesModule),
       },
       {
         path: 'contestannounce',
-        data: { pageTitle: 'Contestannounces' },
+        data: { pageTitle: 'إعــلان المنــــاظارات' },
         loadChildren: () => import('./contestannounce/contestannounce.module').then(m => m.ContestannounceModule),
       },
       {
+        path: 'grade',
+        data: { pageTitle: 'الرتبــــــــــــــــــــــــــــــــــة' },
+        loadChildren: () => import('./grade/grade.module').then(m => m.GradeModule),
+      },
+      {
+        path: 'sector',
+        data: { pageTitle: 'المســـــــــــــــــــــــــــــلك' },
+        loadChildren: () => import('./sector/sector.module').then(m => m.SectorModule),
+      },
+      {
+        path: 'speciality',
+        data: { pageTitle: 'الاختصـــــــــــــــــــــاص' },
+        loadChildren: () => import('./speciality/speciality.module').then(m => m.SpecialityModule),
+      },
+      {
+        path: 'educationlevel',
+        data: { pageTitle: 'المستــوى التعليمــي' },
+        loadChildren: () => import('./educationlevel/educationlevel.module').then(m => m.EducationlevelModule),
+      },
+      {
+        path: 'certificate',
+        data: { pageTitle: 'الشّهـــــــــــــــــــــــــــادة' },
+        loadChildren: () => import('./certificate/certificate.module').then(m => m.CertificateModule),
+      },
+      {
         path: 'contest',
-        data: { pageTitle: 'Contests' },
+        data: { pageTitle: 'المنــاظـــــــــــــــــــــــــــرة' },
         loadChildren: () => import('./contest/contest.module').then(m => m.ContestModule),
-      },
-      {
-        path: 'contestfield',
-        data: { pageTitle: 'Contestfields' },
-        loadChildren: () => import('./contestfield/contestfield.module').then(m => m.ContestfieldModule),
-      },
-      {
-        path: 'contestform',
-        data: { pageTitle: 'Contestforms' },
-        loadChildren: () => import('./contestform/contestform.module').then(m => m.ContestformModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

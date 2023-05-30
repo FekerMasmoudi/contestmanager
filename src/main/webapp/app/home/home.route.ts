@@ -6,6 +6,6 @@ export const HOME_ROUTE: Route = {
   path: '',
   component: HomeComponent,
   data: {
-    pageTitle: 'أهلا وسهلا بك، جافا هبستر!',
+    pageTitle: 'هلا وسهلا بك، في منصـة الإنتدبـات للشركة الجهوية للنقل بصفاقس',
   },
 };

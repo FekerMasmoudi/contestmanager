@@ -1,11 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="ContestannounceHeading">
-    <span>Contestannounces</span>
-
-    <div class="d-flex justify-content-end">
+  <h2 id="page-heading" data-cy="ContestannounceHeading" style="direction: rtl">
+    <span><b>إعــلان المنــاظرة</b></span>
+    <hr />
+    <br />
+    <div class="d-flex justify-content-end" style="direction: ltr">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span>تحديث القائمة</span>
       </button>
 
       <button
@@ -15,7 +16,7 @@
         [routerLink]="['/contestannounce/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Contestannounce </span>
+        <span>إنشــاء أو تحييـن إعــلان منــاظـرة</span>
       </button>
     </div>
   </h2>
@@ -24,41 +25,47 @@
 
   <jhi-alert></jhi-alert>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="contestannounces?.length === 0">
-    <span>No Contestannounces found</span>
+  <div class="alert alert-warning" id="no-result" *ngIf="contestannounces?.length === 0" style="direction: rtl">
+    <span>لايـوجد أي إعـلان لمنــاظـرة</span>
   </div>
 
-  <div class="table-responsive table-entities" id="entities" *ngIf="contestannounces && contestannounces.length > 0">
+  <div class="table-responsive table-entities" id="entities" *ngIf="contestannounces && contestannounces.length > 0" style="direction: rtl">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>ID</span>
+              <span>المعـرّف</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="announceText">
             <div class="d-flex">
-              <span>Announce Text</span>
+              <span>نــص الإعــلان</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="startdate">
             <div class="d-flex">
-              <span>Startdate</span>
+              <span>تــاريخ فتـح المنــاظرة</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="limitdate">
             <div class="d-flex">
-              <span>Limitdate</span>
+              <span>آخــر أجل لقبــول التّرشــحــات</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idsgeneralrules.id">
+            <div class="d-flex">
+              <span>الشــروط العــامــة</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="status">
             <div class="d-flex">
-              <span>Status</span>
+              <span>تفعيــل المنــاظرة</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -73,7 +80,13 @@
           <td>{{ contestannounce.announceText }}</td>
           <td>{{ contestannounce.startdate | formatMediumDate }}</td>
           <td>{{ contestannounce.limitdate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="contestannounce.idsgeneralrules">
+              <a [routerLink]="['/generalrules', contestannounce.idsgeneralrules.id, 'view']">{{ contestannounce.idsgeneralrules.id }}</a>
+            </div>
+          </td>
           <td>{{ contestannounce.status }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button
