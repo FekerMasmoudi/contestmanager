@@ -2,21 +2,23 @@
   <div class="modal-header">
     <h4 class="modal-title" data-cy="specialityDeleteDialogHeading">تأكيد عملية الحذف</h4>
 
-    <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+    <button style="border-radius: 5rem;" type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
   </div>
 
   <div class="modal-body">
     <jhi-alert-error></jhi-alert-error>
-    <p id="jhi-delete-speciality-heading">Are you sure you want to delete Speciality {{ speciality.id }}?</p>
+    <p id="jhi-delete-speciality-heading">
+      هل أنت متأكد أنك تريد حذف التخصص       {{ speciality.id }}؟</p>
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+    <button style="border-radius: 5rem;" style="border-radius: 5rem;"type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
       <fa-icon icon="ban"></fa-icon>&nbsp;<span>الغاء</span>
     </button>
 
-    <button id="jhi-confirm-delete-speciality" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
-      <fa-icon icon="times"></fa-icon>&nbsp;<span>حذف</span>
+    <button style="border-radius: 5rem;" style="border-radius: 5rem;" id="jhi-confirm-delete-speciality" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+      <i class="fa fa-trash-o" style="font-size:18px;color:white"></i>&nbsp;<span>حذف</span>
+ 
     </button>
   </div>
 </form>

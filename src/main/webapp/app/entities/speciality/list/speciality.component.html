@@ -1,21 +1,23 @@
 <div>
   <h2 id="page-heading" data-cy="SpecialityHeading">
-    <span>Specialities</span>
+    <span>اختصاصات</span>
+    <br>
+    <br>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+    <div class="d-flex justify-content-start">
+      <button style="border-radius: 5rem;" class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span>تحديث القائمة</span>
       </button>
 
-      <button
+      <button style="border-radius: 5rem;"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-speciality"
         [routerLink]="['/speciality/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Speciality </span>
+        <span> اظافة تخصص جديد </span>
       </button>
     </div>
   </h2>
@@ -25,7 +27,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="specialities?.length === 0">
-    <span>No Specialities found</span>
+    <span>لايوجد بيانات</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="specialities && specialities.length > 0">
@@ -34,13 +36,13 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>ID</span>
+              <span>رمز</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="designation">
             <div class="d-flex">
-              <span>Designation</span>
+              <span>تسمية</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -55,7 +57,7 @@
           <td>{{ speciality.designation }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <button
+              <button style="border-radius: 5rem;"
                 type="submit"
                 [routerLink]="['/speciality', speciality.id, 'view']"
                 class="btn btn-info btn-sm"
@@ -65,7 +67,7 @@
                 <span class="d-none d-md-inline">عرض</span>
               </button>
 
-              <button
+              <button style="border-radius: 5rem;"
                 type="submit"
                 [routerLink]="['/speciality', speciality.id, 'edit']"
                 class="btn btn-primary btn-sm"
@@ -75,7 +77,7 @@
                 <span class="d-none d-md-inline">تعديل</span>
               </button>
 
-              <button type="submit" (click)="delete(speciality)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button style="border-radius: 5rem;" type="submit" (click)="delete(speciality)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">حذف</span>
               </button>

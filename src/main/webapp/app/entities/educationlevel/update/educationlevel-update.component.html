@@ -1,18 +1,18 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-educationlevel-heading" data-cy="EducationlevelCreateUpdateHeading">Create or edit a Educationlevel</h2>
+      <h2 id="jhi-educationlevel-heading" data-cy="EducationlevelCreateUpdateHeading">اظافة أو تعديل الشهادة</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" for="field_id">ID</label>
+          <label class="form-label" for="field_id">رمز</label>
           <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_designation">Designation</label>
+          <label class="form-label" for="field_designation">تسمية</label>
           <input
             type="text"
             class="form-control"
@@ -28,11 +28,11 @@
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button style="border-radius: 5rem;" type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>الغاء</span>
         </button>
 
-        <button
+        <button style="border-radius: 5rem;"
           type="submit"
           id="save-entity"
           data-cy="entityCreateSaveButton"

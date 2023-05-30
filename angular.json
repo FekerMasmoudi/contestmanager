@@ -18,6 +18,7 @@
       "prefix": "jhi",
       "architect": {
         "build": {
+         
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
@@ -36,6 +37,7 @@
               "src/main/webapp/robots.txt"
             ],
             "styles": ["src/main/webapp/content/scss/vendor.scss", "src/main/webapp/content/scss/global.scss"],
+
             "scripts": []
           },
           "configurations": {

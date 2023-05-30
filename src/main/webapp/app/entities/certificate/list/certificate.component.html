@@ -1,21 +1,22 @@
 <div>
   <h2 id="page-heading" data-cy="CertificateHeading">
-    <span>Certificates</span>
-
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+    <span> الشهادات</span>
+    <br>
+     <br>
+    <div class="d-flex justify-content-start">
+      <button style="border-radius: 5rem;" class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span>تحديث القائمة</span>
       </button>
 
-      <button
+      <button style="border-radius: 5rem;"
         id="jh-create-entity"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-certificate"
+        class="btn btn-success jh-create-entity create-certificate"
         [routerLink]="['/certificate/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Certificate </span>
+        <span> إنشاء شهادة جديدة </span>
       </button>
     </div>
   </h2>
@@ -25,7 +26,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="certificates?.length === 0">
-    <span>No Certificates found</span>
+    <span>لا توجد بيانات</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="certificates && certificates.length > 0">
@@ -34,7 +35,7 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>ID</span>
+              <span>الرمز</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -55,7 +56,7 @@
           <td>{{ certificate.designation }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <button
+              <button style="border-radius: 5rem;"
                 type="submit"
                 [routerLink]="['/certificate', certificate.id, 'view']"
                 class="btn btn-info btn-sm"
@@ -65,7 +66,7 @@
                 <span class="d-none d-md-inline">عرض</span>
               </button>
 
-              <button
+              <button style="border-radius: 5rem;"
                 type="submit"
                 [routerLink]="['/certificate', certificate.id, 'edit']"
                 class="btn btn-primary btn-sm"
@@ -75,7 +76,7 @@
                 <span class="d-none d-md-inline">تعديل</span>
               </button>
 
-              <button type="submit" (click)="delete(certificate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button style="border-radius: 5rem;" type="submit" (click)="delete(certificate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">حذف</span>
               </button>

@@ -1,21 +1,22 @@
 <div>
   <h2 id="page-heading" data-cy="GradeHeading">
-    <span>Grades</span>
-
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+    <span>الرتبات</span>
+    <br>
+    <br>
+    <div  class="d-flex justify-content-start">
+      <button style="border-radius: 5rem;" class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span>تحديث القائمة</span>
       </button>
 
-      <button
+      <button style="border-radius: 5rem;"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-grade"
         [routerLink]="['/grade/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Grade </span>
+        <span> اظافة رتبة  </span>
       </button>
     </div>
   </h2>
@@ -25,7 +26,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="grades?.length === 0">
-    <span>No Grades found</span>
+    <span>لاتوجد بيانات</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="grades && grades.length > 0">
@@ -34,25 +35,28 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>ID</span>
+              <span>رمز </span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="designation">
             <div class="d-flex">
-              <span>Designation</span>
+              <span>تسمية</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="ideducationlevel.id">
             <div class="d-flex">
-              <span>Ideducationlevel</span>
+              <span>مستوى التعليم</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="idcertificate.id">
             <div class="d-flex">
-              <span>Idcertificate</span>
+              <span>
+               
+                 الشهادة   
+                </span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -77,17 +81,17 @@
           </td>
           <td class="text-end">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['/grade', grade.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <button  style="border-radius: 5rem;" type="submit" [routerLink]="['/grade', grade.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">عرض</span>
               </button>
 
-              <button type="submit" [routerLink]="['/grade', grade.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <button  style="border-radius: 5rem;"type="submit" [routerLink]="['/grade', grade.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">تعديل</span>
               </button>
 
-              <button type="submit" (click)="delete(grade)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button style="border-radius: 5rem;"type="submit" (click)="delete(grade)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">حذف</span>
               </button>
