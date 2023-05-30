@@ -1,18 +1,21 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-contestannounce-heading" data-cy="ContestannounceCreateUpdateHeading">Create or edit a Contestannounce</h2>
-
-      <div>
+      <h2 id="jhi-contestannounce-heading" data-cy="ContestannounceCreateUpdateHeading" style="direction: rtl">
+        <b>إنشــاء أو تحييـن إعــلان منــاظــرة</b>
+      </h2>
+      <hr />
+      <br />
+      <div style="direction: rtl">
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" for="field_id">ID</label>
+          <label class="form-label" for="field_id">المعــرّف</label>
           <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_announceText">Announce Text</label>
+          <label class="form-label" for="field_announceText">نــص إعـلان المنـاظـرة :*</label>
           <input
             type="text"
             class="form-control"
@@ -29,7 +32,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_startdate">Startdate</label>
+          <label class="form-label" for="field_startdate">تـاريـخ فتـح المنـاظـرة :*</label>
           <div class="input-group">
             <input
               id="field_startdate"
@@ -49,7 +52,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_limitdate">Limitdate</label>
+          <label class="form-label" for="field_limitdate">آخـر أجل لقبـول الترشحــات :*</label>
           <div class="input-group">
             <input
               id="field_limitdate"
@@ -69,26 +72,27 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_status">Status</label>
+          <label class="form-label" for="field_status">تفعيـل الإعــلان :</label>
           <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
           <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> هذا الحقل مطلوب. </small>
           </div>
         </div>
 
-        <div class="row mb-3">
-          <label for="field_idsgeneralrules">Idsgeneralrules</label>
+        <div class="row mb-3" style="direction: rtl">
+          <label class="form-label" for="field_idsgeneralrules">الرجــاء إختيـار الشروط العــامــة :*</label>
           <select
-            class="form-control"
+            class="form-select"
             id="field_idsgeneralrules"
             data-cy="idsgeneralrules"
-            multiple
             name="idsgeneralrules"
             formControlName="idsgeneralrules"
             [compareWith]="compareGeneralrules"
+            multiple
           >
+            <option *ngIf="!editForm.get('idsgeneralrules')!.value" [ngValue]="null" selected>--إختر الشـروط العــامــة--</option>
             <option [ngValue]="generalrulesOption" *ngFor="let generalrulesOption of generalrulesSharedCollection">
-              {{ generalrulesOption.id }}
+              {{ generalrulesOption.designation }}
             </option>
           </select>
         </div>

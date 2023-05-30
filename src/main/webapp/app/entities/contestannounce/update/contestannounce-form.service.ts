@@ -54,7 +54,9 @@ export class ContestannounceFormService {
       status: new FormControl(contestannounceRawValue.status, {
         validators: [Validators.required],
       }),
-      idsgeneralrules: new FormControl(contestannounceRawValue.idsgeneralrules ?? []),
+      idsgeneralrules: new FormControl(contestannounceRawValue.idsgeneralrules, {
+        validators: [Validators.required],
+      }),
     });
   }
 
@@ -76,7 +78,6 @@ export class ContestannounceFormService {
     return {
       id: null,
       status: false,
-      idsgeneralrules: [],
     };
   }
 }

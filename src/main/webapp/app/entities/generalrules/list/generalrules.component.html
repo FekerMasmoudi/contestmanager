@@ -1,11 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="GeneralrulesHeading">
-    <span>Generalrules</span>
-
-    <div class="d-flex justify-content-end">
+  <h2 id="page-heading" data-cy="GeneralrulesHeading" style="direction: rtl">
+    <span><b>الشــروط العــامــة</b></span>
+    <hr />
+    <br />
+    <div class="d-flex justify-content-end" style="direction: ltr">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span>تحديث القائمة</span>
       </button>
 
       <button
@@ -15,7 +16,7 @@
         [routerLink]="['/generalrules/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Generalrules </span>
+        <span> إنشــاء أو تحييـن الشــروط العــامــة </span>
       </button>
     </div>
   </h2>
@@ -24,29 +25,29 @@
 
   <jhi-alert></jhi-alert>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="generalrules?.length === 0">
-    <span>No Generalrules found</span>
+  <div class="alert alert-warning" id="no-result" *ngIf="generalrules?.length === 0" style="direction: rtl">
+    <span> لايـوجد أي شــروط عــامة </span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="generalrules && generalrules.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table class="table table-striped" aria-describedby="page-heading" style="direction: rtl">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>ID</span>
+              <span>المعــرّف</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="designation">
             <div class="d-flex">
-              <span>Designation</span>
+              <span>الإســم</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="effectdate">
             <div class="d-flex">
-              <span>Effectdate</span>
+              <span>تــاريخ التفعــيل</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

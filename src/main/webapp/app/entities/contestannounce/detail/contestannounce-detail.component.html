@@ -1,41 +1,41 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-8" style="direction: rtl">
     <div *ngIf="contestannounce">
-      <h2 data-cy="contestannounceDetailsHeading"><span>Contestannounce</span></h2>
+      <h2 data-cy="contestannounceDetailsHeading"><span>إعــلان المنــاظرة</span></h2>
 
       <hr />
+      <br />
 
       <jhi-alert-error></jhi-alert-error>
 
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span>ID</span></dt>
+        <dt><span>المعــرّف</span></dt>
         <dd>
           <span>{{ contestannounce.id }}</span>
         </dd>
-        <dt><span>Announce Text</span></dt>
+        <dt><span>نــص الإعــلان</span></dt>
         <dd>
           <span>{{ contestannounce.announceText }}</span>
         </dd>
-        <dt><span>Startdate</span></dt>
+        <dt><span>تــاريخ فتـح المنــاظرة</span></dt>
         <dd>
           <span>{{ contestannounce.startdate | formatMediumDate }}</span>
         </dd>
-        <dt><span>Limitdate</span></dt>
+        <dt><span>آخــر أجل لقبــول التّرشــحــات</span></dt>
         <dd>
           <span>{{ contestannounce.limitdate | formatMediumDate }}</span>
         </dd>
-        <dt><span>Status</span></dt>
+        <dt><span>حــالة الإعـلان</span></dt>
         <dd>
           <span>{{ contestannounce.status }}</span>
         </dd>
-        <dt><span>Idsgeneralrules</span></dt>
+        <dt><span>الشــروط العــامــة</span></dt>
         <dd>
-          <span *ngFor="let idsgeneralrules of contestannounce.idsgeneralrules; let last = last">
-            <a [routerLink]="['/generalrules', idsgeneralrules.id, 'view']">{{ idsgeneralrules.id }}</a
-            >{{ last ? '' : ', ' }}
-          </span>
+          <div *ngIf="contestannounce.idsgeneralrules">
+            <a [routerLink]="['/generalrules', contestannounce.idsgeneralrules, 'view']">{{ contestannounce.idsgeneralrules }}</a>
+          </div>
         </dd>
       </dl>
 

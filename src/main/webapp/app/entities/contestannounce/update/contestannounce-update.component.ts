@@ -82,7 +82,7 @@ export class ContestannounceUpdateComponent implements OnInit {
 
     this.generalrulesSharedCollection = this.generalrulesService.addGeneralrulesToCollectionIfMissing<IGeneralrules>(
       this.generalrulesSharedCollection,
-      ...(contestannounce.idsgeneralrules ?? [])
+      contestannounce.idsgeneralrules
     );
   }
 
@@ -92,12 +92,10 @@ export class ContestannounceUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IGeneralrules[]>) => res.body ?? []))
       .pipe(
         map((generalrules: IGeneralrules[]) =>
-          this.generalrulesService.addGeneralrulesToCollectionIfMissing<IGeneralrules>(
-            generalrules,
-            ...(this.contestannounce?.idsgeneralrules ?? [])
-          )
+          this.generalrulesService.addGeneralrulesToCollectionIfMissing<IGeneralrules>(generalrules, this.contestannounce?.idsgeneralrules)
         )
       )
+
       .subscribe((generalrules: IGeneralrules[]) => (this.generalrulesSharedCollection = generalrules));
   }
 }
